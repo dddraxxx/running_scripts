@@ -7,4 +7,4 @@ git switch v3
 
 bash setup.sh
 bash prepare_data_v2.sh
-bash training_scripts/v1_tempconstant_long7b.sh
+bash training_scripts/v1_long7b.sh
