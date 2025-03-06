@@ -17,6 +17,7 @@ qd_launch2(){
     --name $job_name \
     --command -- bash -c "source /sensei-fs/users/$user/qd/setup.sh; entry_setup; curl -sL https://raw.githubusercontent.com/dddraxxx/running_scripts/refs/heads/main/one_click.sh | bash -s $script_name | tee /sensei-fs/users/$user/qd/$job_name.log"
 }
+runai configure project clineto-over-quota
 qd_launch2 low run_grpo_rec_low.sh
 qd_launch2 lower run_grpo_rec_low2.sh
 qd_launch2 seg3 training_scripts/v1_longref7b_contiou.sh
