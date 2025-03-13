@@ -7,4 +7,5 @@ git switch v3
 
 bash setup.sh
 bash prepare_data_v2.sh
+sleep 10
 bash $@
