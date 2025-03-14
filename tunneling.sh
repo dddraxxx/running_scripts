@@ -1,3 +1,4 @@
+wandb login --relogin b269a06e60f40aa51166a46be3ec96e883a6d33f
 touch vscode_tunnel.log
 
 # Create Python script for wandb monitoring
