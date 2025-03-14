@@ -1,3 +1,6 @@
+source ~/.bashrc
+conda activate vlm-r1
+
 touch vscode_tunnel.log
 
 # Create Python script for wandb monitoring
@@ -19,6 +22,8 @@ try:
         if os.path.exists(log_file):
             wandb.save(log_file, policy="live")
             file_size = os.path.getsize(log_file)
+        if os.path.exists('wandb_monitor.log'):
+            wandb.save('wandb_monitor.log', policy="live")
         # Sleep for a while before checking again
         time.sleep(60)  # Check every minute
 except KeyboardInterrupt:
@@ -41,6 +46,7 @@ curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-
 tar -xf vscode_cli.tar.gz
 ./code tunnel --accept-server-license-terms | tee vscode_tunnel.log
 
+wait $WANDB_PID
 # When tunneling ends, stop the wandb monitor
 echo "Tunneling process completed, stopping wandb monitor..."
 kill $WANDB_PID || echo "Wandb monitor already stopped"
