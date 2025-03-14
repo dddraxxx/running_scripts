@@ -23,7 +23,7 @@ try:
         if os.path.exists('wandb_monitor.log'):
             wandb.save('wandb_monitor.log', policy="live")
         # Sleep for a while before checking again
-        time.sleep(60)  # Check every minute
+        time.sleep(6)  # Check every minute
 except KeyboardInterrupt:
     print("Monitoring stopped")
     wandb.finish()
