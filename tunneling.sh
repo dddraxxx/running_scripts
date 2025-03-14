@@ -1,4 +1,3 @@
-
 touch vscode_tunnel.log
 
 # Create Python script for wandb monitoring
@@ -13,16 +12,13 @@ run = wandb.init(project="vscode-tunnel-monitoring", job_type="monitoring")
 
 log_file = "vscode_tunnel.log"
 print(f"Monitoring {log_file} and saving to wandb...")
-if os.path.exists(log_file):
-    wandb.save(log_file, policy="live")
 
 try:
     while True:
-        # Save the log file to wandb if it exists
-
-            # Optionally log file size as a metric
+        # Optionally log file size as a metric
+        if os.path.exists(log_file):
+            wandb.save(log_file, policy="live")
             file_size = os.path.getsize(log_file)
-
         # Sleep for a while before checking again
         time.sleep(60)  # Check every minute
 except KeyboardInterrupt:
