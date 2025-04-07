@@ -17,6 +17,23 @@ echo_color() {
     echo -e "${color}${message}${NC}"
 }
 
+# Function to get the latest version from GitHub API
+get_latest_version() {
+    echo_color $YELLOW "Detecting latest Zellij version..."
+    
+    # Use GitHub API to get the latest release
+    latest_version=$(curl -s https://api.github.com/repos/zellij-org/zellij/releases/latest | 
+                    grep -oP '"tag_name": "v\K[0-9.]+' || echo "")
+    
+    if [[ -z "$latest_version" ]]; then
+        echo_color $YELLOW "Could not detect latest version. Using fallback version 0.42.1."
+        echo "0.42.1"
+    else
+        echo_color $GREEN "Latest version detected: $latest_version"
+        echo "$latest_version"
+    fi
+}
+
 # Function to detect system architecture
 detect_architecture() {
     arch=$(uname -m)
@@ -43,8 +60,8 @@ detect_architecture() {
 
 # Function to download and extract zellij
 install_zellij() {
-    # Latest stable release version as of April 2025
-    version="0.41.2"
+    # Get the latest version
+    version=$(get_latest_version)
     arch=$(detect_architecture)
     
     echo_color $YELLOW "Installing Zellij v${version} for ${arch}..."
