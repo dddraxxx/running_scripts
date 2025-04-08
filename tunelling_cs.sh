@@ -1,5 +1,9 @@
-# source ~/.bashrc
-# conda activate vlm-r1
+source ~/.bashrc
+
+if [ -d ~/.cursor ]; then
+    echo "Found previous cursor installation. Removing..."
+    rm -r ~/.cursor
+fi
 
 touch vscode_tunnel.log
 
