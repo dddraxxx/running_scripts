@@ -1,5 +1,5 @@
-source ~/.bashrc
-conda activate vlm-r1
+# source ~/.bashrc
+# conda activate vlm-r1
 
 touch vscode_tunnel.log
 
