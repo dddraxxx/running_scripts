@@ -42,7 +42,7 @@ echo "Wandb monitoring started with PID: $WANDB_PID"
 curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz
 
 tar -xf vscode_cli.tar.gz
-./code tunnel --accept-server-license-terms | tee vscode_tunnel.log
+./code tunnel --accept-server-license-terms --install-extension ms-python.python --install-extension ms-toolsai.jupyter --install-extension eamodio.gitlensv --install-extension augment.vscode-augment | tee vscode_tunnel.log
 
 wait $WANDB_PID
 # When tunneling ends, stop the wandb monitor
