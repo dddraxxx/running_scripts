@@ -28,9 +28,9 @@ try:
             file_size = os.path.getsize(log_file)
         if os.path.exists('wandb_monitor.log'):
             wandb.save('wandb_monitor.log', policy="live")
-        if os.path.exists(os.environ.get("RUN_LOG")):
+        if os.path.exists(os.environ.get("RUN_LOG", "./RUN_LOG")):
             wandb.save(os.environ.get("RUN_LOG"), policy="live")
-        if os.path.exists(os.environ.get("EXTRA_LOG")):
+        if os.path.exists(os.environ.get("EXTRA_LOG", "./EXTRA_LOG")):
             wandb.save(os.environ.get("EXTRA_LOG"), policy="live")
         # Sleep for a while before checking again
         time.sleep(60)  # Check every minute
