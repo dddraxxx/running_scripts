@@ -3,4 +3,4 @@ cd reason-synth
 bash uv_pip.sh
 # Initialize and update submodules
 git pull && git submodule update --init --recursive
-cd easyr1 && git checkout main
+cd easyr1 && git checkout main && bash uv_pip.sh
