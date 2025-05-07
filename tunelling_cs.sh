@@ -52,7 +52,9 @@ echo "Wandb monitoring started with PID: $WANDB_PID"
 curl -Lk 'https://api2.cursor.sh/updates/download-latest?os=cli-alpine-x64' --output vscode_cli.tar.gz
 
 tar -xf vscode_cli.tar.gz
-./cursor tunnel --no-sleep --accept-server-license-terms --install-extension ms-python.python --install-extension ms-toolsai.jupyter --install-extension eamodio.gitlens --install-extension kisstkondoros.vscode-gutter-preview | tee vscode_tunnel.log
+./cursor tunnel --no-sleep --accept-server-license-terms --install-extension ms-python.python --install-extension ms-toolsai.jupyter --install-extension eamodio.gitlens \
+    --install-extension kisstkondoros.vscode-gutter-preview --install-extension anyscalecompute.ray-distributed-debugger \
+    | tee vscode_tunnel.log
 # ivanarjona.cloudflaretunnel
 
 wait $WANDB_PID
