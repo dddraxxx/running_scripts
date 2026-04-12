@@ -4,10 +4,9 @@ set -euo pipefail
 ZIP_URL="${ENV_BUNDLE_URL:-https://raw.githubusercontent.com/dddraxxx/running_scripts/main/env_files_protected.zip}"
 INSTALL_DIR="${ENV_BUNDLE_DIR:-$HOME/.pluto_env_bundle}"
 ZIP_PATH="$INSTALL_DIR/env_files_protected.zip"
+ZIP_PASSWORD="${1:-${ENV_BUNDLE_PASSWORD:-}}"
 
-if [[ -n "${ENV_BUNDLE_PASSWORD:-}" ]]; then
-  ZIP_PASSWORD="$ENV_BUNDLE_PASSWORD"
-else
+if [[ -z "$ZIP_PASSWORD" ]]; then
   read -rsp "Bundle password: " ZIP_PASSWORD
   echo
 fi
