@@ -1,5 +1,3 @@
-source ~/.bashrc
-
 # Continue with normal tunneling process
 curl -Lk 'https://api2.cursor.sh/updates/download-latest?os=cli-alpine-x64' --output vscode_cli.tar.gz
 
