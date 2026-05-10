@@ -23,6 +23,7 @@ link() {
 link "$DOTFILES_DIR/tmux/tmux.conf"       "$HOME/.tmux.conf"
 link "$DOTFILES_DIR/tmux/tmux.local.conf" "$HOME/.tmux.local.conf"
 link "$DOTFILES_DIR/bin/claude-fork.sh"   "$HOME/.local/bin/claude-fork.sh"
+link "$DOTFILES_DIR/bin/codex-fork.sh"    "$HOME/.local/bin/codex-fork.sh"
 
 echo
 echo "Done. Reload tmux config in a running session with:"
