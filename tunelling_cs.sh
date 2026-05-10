@@ -1,3 +1,15 @@
+# Clear old Cursor server/cache from previous tunnel runs.
+rm -rf ~/.cursor-server
+rm -rf ~/.cursor
+rm -rf ~/.cache/cursor
+rm -rf ~/.config/Cursor
+
+# If VS Code Remote was used on the same machine, clear its server cache too.
+rm -rf ~/.vscode-server
+
+# Clear old CLI binaries/logs from previous script runs.
+rm -f ~/cursor ~/vscode_cli.tar.gz ~/cursor_tunnel.log
+
 # Continue with normal tunneling process
 curl -L 'https://api2.cursor.sh/updates/download-latest?os=cli-alpine-x64' --output vscode_cli.tar.gz
 
