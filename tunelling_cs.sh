@@ -11,7 +11,9 @@ rm -f ~/cursor ~/cursor_cli.tar.gz ~/cursor_tunnel.log
 curl -L 'https://api2.cursor.sh/updates/download-latest?os=cli-alpine-x64' --output cursor_cli.tar.gz
 
 tar -xf cursor_cli.tar.gz
-./cursor tunnel --no-sleep --accept-server-license-terms --install-extension ms-python.python --install-extension ms-toolsai.jupyter \
+mkdir -p ~/.cursor-server/extensions
+./cursor tunnel --no-sleep --accept-server-license-terms --extensions-dir ~/.cursor-server/extensions \
+    --install-extension ms-python.python --install-extension ms-toolsai.jupyter \
     --install-extension kisstkondoros.vscode-gutter-preview --install-extension anyscalecompute.ray-distributed-debugger --install-extension openai.chatgpt \
     | tee cursor_tunnel.log
 
