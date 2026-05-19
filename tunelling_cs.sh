@@ -5,6 +5,13 @@ stop_existing_tunnels() {
 
 stop_existing_tunnels
 
+REMOTE_DIR="$HOME/remote"
+CURSOR_CLI="$REMOTE_DIR/cursor"
+CURSOR_CLI_TAR="$REMOTE_DIR/cursor_cli.tar.gz"
+CURSOR_TUNNEL_LOG="$REMOTE_DIR/cursor_tunnel.log"
+
+mkdir -p "$REMOTE_DIR"
+
 # Clear old Cursor server/cache from previous tunnel runs.
 rm -rf ~/.cursor-server
 rm -rf ~/.cursor
@@ -12,14 +19,17 @@ rm -rf ~/.cache/cursor
 rm -rf ~/.config/Cursor
 
 # Clear old CLI binaries/logs from previous script runs.
-rm -f ~/cursor ~/cursor_cli.tar.gz ~/cursor_tunnel.log
+rm -f "$CURSOR_CLI" "$CURSOR_CLI_TAR" "$CURSOR_TUNNEL_LOG"
 
 # Continue with normal tunneling process
-curl -L 'https://api2.cursor.sh/updates/download-latest?os=cli-alpine-x64' --output cursor_cli.tar.gz
+curl -L 'https://api2.cursor.sh/updates/download-latest?os=cli-alpine-x64' --output "$CURSOR_CLI_TAR"
 
-tar -xf cursor_cli.tar.gz
-./cursor tunnel --no-sleep --accept-server-license-terms --install-extension ms-python.python --install-extension ms-toolsai.jupyter \
+tar -xf "$CURSOR_CLI_TAR" -C "$REMOTE_DIR"
+
+"$CURSOR_CLI" tunnel unregister 2>/dev/null || true
+
+"$CURSOR_CLI" tunnel --no-sleep --accept-server-license-terms --install-extension ms-python.python --install-extension ms-toolsai.jupyter \
     --install-extension kisstkondoros.vscode-gutter-preview --install-extension anyscalecompute.ray-distributed-debugger --install-extension openai.chatgpt \
-    | tee cursor_tunnel.log
+    | tee "$CURSOR_TUNNEL_LOG"
 
 sleep infinity
