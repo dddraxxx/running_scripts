@@ -18,6 +18,11 @@ rm -f ~/code ~/vscode_cli.tar.gz ~/vscode_tunnel.log
 curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz
 
 tar -xf vscode_cli.tar.gz
+
+# Remove the old registered tunnel before creating a fresh one. This prevents
+# stale forwarded ports from making the tunnel hit the PortsPerTunnel limit.
+./code tunnel unregister 2>/dev/null || true
+
 ./code tunnel --no-sleep --accept-server-license-terms --install-extension ms-python.python --install-extension ms-toolsai.jupyter \
     --install-extension kisstkondoros.vscode-gutter-preview --install-extension anyscalecompute.ray-distributed-debugger --install-extension openai.chatgpt \
     | tee vscode_tunnel.log
