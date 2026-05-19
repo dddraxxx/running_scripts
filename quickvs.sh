@@ -5,9 +5,12 @@ stop_existing_tunnels() {
 
 stop_existing_tunnels
 
-CODE_CLI="$HOME/code"
-VSCODE_CLI_TAR="$HOME/vscode_cli.tar.gz"
-VSCODE_TUNNEL_LOG="$HOME/vscode_tunnel.log"
+REMOTE_DIR="$HOME/remote"
+CODE_CLI="$REMOTE_DIR/code"
+VSCODE_CLI_TAR="$REMOTE_DIR/vscode_cli.tar.gz"
+VSCODE_TUNNEL_LOG="$REMOTE_DIR/vscode_tunnel.log"
+
+mkdir -p "$REMOTE_DIR"
 
 # Clear old VS Code server/cache from previous tunnel runs.
 rm -rf ~/.vscode-server
@@ -21,7 +24,7 @@ rm -f "$CODE_CLI" "$VSCODE_CLI_TAR" "$VSCODE_TUNNEL_LOG"
 # Continue with normal tunneling process
 curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output "$VSCODE_CLI_TAR"
 
-tar -xf "$VSCODE_CLI_TAR" -C "$HOME"
+tar -xf "$VSCODE_CLI_TAR" -C "$REMOTE_DIR"
 
 # Remove the old registered tunnel before creating a fresh one. This prevents
 # stale forwarded ports from making the tunnel hit the PortsPerTunnel limit.
