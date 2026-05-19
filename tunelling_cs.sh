@@ -1,3 +1,10 @@
+stop_existing_tunnels() {
+    echo "Stopping existing Cursor tunnel processes..."
+    pkill -f '(^|/)cursor tunnel' 2>/dev/null || true
+}
+
+stop_existing_tunnels
+
 # Clear old Cursor server/cache from previous tunnel runs.
 rm -rf ~/.cursor-server
 rm -rf ~/.cursor

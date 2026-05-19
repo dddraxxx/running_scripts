@@ -1,3 +1,9 @@
+stop_existing_tunnels() {
+    echo "Stopping existing VS Code tunnel processes..."
+    pkill -f '(^|/)code tunnel' 2>/dev/null || true
+}
+
+stop_existing_tunnels
 
 # Clear old VS Code server/cache from previous tunnel runs.
 rm -rf ~/.vscode-server
