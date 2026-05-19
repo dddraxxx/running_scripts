@@ -29,9 +29,9 @@ tar -xf "$VSCODE_CLI_TAR" -C "$REMOTE_DIR"
 
 # Remove the old registered tunnel before creating a fresh one. This prevents
 # stale forwarded ports from making the tunnel hit the PortsPerTunnel limit.
-"$CODE_CLI" --cli-data-dir "$VSCODE_CLI_DATA_DIR" tunnel unregister 2>/dev/null || true
+"$CODE_CLI" tunnel --cli-data-dir "$VSCODE_CLI_DATA_DIR" unregister 2>/dev/null || true
 
-"$CODE_CLI" --cli-data-dir "$VSCODE_CLI_DATA_DIR" tunnel --no-sleep --accept-server-license-terms --install-extension ms-python.python --install-extension ms-toolsai.jupyter \
+"$CODE_CLI" tunnel --cli-data-dir "$VSCODE_CLI_DATA_DIR" --no-sleep --accept-server-license-terms --install-extension ms-python.python --install-extension ms-toolsai.jupyter \
     --install-extension kisstkondoros.vscode-gutter-preview --install-extension anyscalecompute.ray-distributed-debugger --install-extension openai.chatgpt \
     | tee "$VSCODE_TUNNEL_LOG"
 
