@@ -5,7 +5,7 @@ stop_existing_tunnels() {
 
 stop_existing_tunnels
 
-REMOTE_DIR="$HOME/remote"
+REMOTE_DIR="$HOME/remote_cursor"
 CURSOR_CLI="$REMOTE_DIR/cursor"
 CURSOR_CLI_TAR="$REMOTE_DIR/cursor_cli.tar.gz"
 CURSOR_TUNNEL_LOG="$REMOTE_DIR/cursor_tunnel.log"
